@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | OpenGates InsureFlow</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981',
+                        dark: '#1e293b',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-gray-50 dark:bg-dark min-h-screen font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-slate-900 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i data-feather="shield" class="h-8 w-8 text-primary"></i>
+                        <a href="index.html"><span class="ml-2 text-xl font-bold text-gray-900 dark:text-white">OpenGates </span></a>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="index.html" class="text-gray-500 dark:text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="contact.html" class="text-gray-500 dark:text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <button id="theme-toggle" class="theme-toggle p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700">
+                        <i data-feather="moon" class="hidden dark:block text-yellow-300"></i>
+                        <i data-feather="sun" class="dark:hidden text-gray-700"></i>
+                    </button>
+                    <div class="flex space-x-4">
+                        <a href="login.html" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-blue-600">
+                            Login
+                        </a>
+                        <a href="register.html" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary bg-white hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-700 border border-primary">
+                            Register
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 container mx-auto px-6 py-12">
+  <h1 class="text-4xl font-bold mb-6 text-blue-600 dark:text-blue-400">Contact Us</h1>
+  <p class="mb-6 text-gray-700 dark:text-gray-300">
+    Have questions, feedback, or need support? Reach out to our team and we’ll get back to you as soon as possible.
+  </p>
+
+  <!-- Contact Info -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-6 text-blue-600 dark:text-blue-400">Our Contact Information</h2>
+    <ul class="list-disc ml-6 space-y-2 text-gray-700 dark:text-gray-300">
+      <li>Email: <a href="mailto:support@insurancems.com" class="text-blue-600 dark:text-blue-400">support@insurancems.com</a></li>
+      <li>Phone: <a href="tel:+1234567890" class="text-blue-600 dark:text-blue-400">+1 234 567 890</a></li>
+      <li>Address: 123 Insurance Ave, Suite 100, Nairobi, Kenya</li>
+      <li>Support Hours: Mon-Fri, 9:00 AM – 5:00 PM</li>
+    </ul>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold mb-6 text-blue-600 dark:text-blue-400">Send Us a Message</h2>
+    <form action="#" method="POST" class="space-y-6">
+      <div>
+        <label for="name" class="text-base text-gray-500 dark:text-gray-300">Full Name</label>
+        <input type="text" id="name" name="name" required class="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div>
+        <label for="email" class="text-base text-gray-500 dark:text-gray-300">Email Address</label>
+        <input type="email" id="email" name="email" required class="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div>
+        <label for="message" class="text-base text-gray-500 dark:text-gray-300">Message</label>
+        <textarea id="message" name="message" rows="5" required class="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500"></textarea>
+      </div>
+      <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Map / Location (optional placeholder) -->
+    <div class="bg-gray-100 dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.808559234693!2d36.82121531575375!3d-1.2921030990561586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d664b2096d%3A0x9f1c3d9c67e6c6a4!2sNairobi%20Central%20Business%20District!5e0!3m2!1sen!2ske!4v1630000000000!5m2!1sen!2ske" 
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy"
+                    class="rounded-lg shadow-md">
+            </iframe>
+        </div>
+    </div>
+   <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-900 mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="border-t border-gray-200 dark:border-gray-700 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-base text-gray-500 dark:text-gray-300">&copy; 2025 OpenGates InsureFlow. All rights reserved.</p>
+                <div class="mt-4 md:mt-0">
+                    <a href="privacy.html" class="text-base text-gray-500 dark:text-gray-300 hover:text-primary">Privacy Policy</a>
+                    <span class="mx-2 text-gray-500">•</span>
+                    <a href="terms.html" class="text-base text-gray-500 dark:text-gray-300 hover:text-primary">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+        // Theme toggle functionality
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+        });
+    </script>
+</body>
+</html>

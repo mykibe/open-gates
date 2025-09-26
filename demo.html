@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OpenGates Insurance — Demo Dashboard</title>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root{
+      --bg: #f4f6fa;       /* previous (light) background requested */
+      --primary: #0a1f44;  /* dark blue */
+      --accent: #00ff88;   /* neon green */
+      --card: #ffffff;
+      --muted: #6b7280;
+      --danger: #ff4444;
+      --warning: #ffaa00;
+      --success: #00c851;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: var(--primary);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Top header */
+    header.topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 18px;
+      background:var(--primary);
+      color:#fff;
+    }
+    .brand {
+      display:flex; gap:12px; align-items:center;
+      font-weight:700;
+    }
+    .brand .logo {
+      width:36px; height:36px; border-radius:8px;
+      background:linear-gradient(135deg,#073050,#19507a);
+      display:inline-flex; align-items:center; justify-content:center;
+      color:var(--accent); font-weight:800;
+    }
+    .top-actions { display:flex; gap:10px; align-items:center; }
+
+    .menu-toggle {
+      display:none;
+      background:transparent; border:1px solid rgba(255,255,255,0.12);
+      color:#fff; padding:8px 10px; border-radius:8px; cursor:pointer;
+    }
+
+    .login-note {
+      text-align:center;
+      background:var(--accent);
+      color:var(--primary);
+      padding:8px 12px;
+      font-weight:600;
+    }
+
+    /* Layout */
+    .layout {
+      display:grid;
+      grid-template-columns: 260px 1fr;
+      min-height: calc(100vh - 94px);
+    }
+
+    /* Sidebar */
+    aside.sidebar {
+      background:var(--primary);
+      color:#fff;
+      padding:18px;
+      min-height:100%;
+    }
+    .sidebar .profile {
+      display:flex; gap:12px; align-items:center; margin-bottom:18px;
+    }
+    .profile .avatar { width:44px;height:44px;border-radius:8px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:var(--primary);font-weight:700;}
+    nav.menu a {
+      display:block; color:#e6eef9; text-decoration:none; padding:10px 8px; border-radius:6px; margin-bottom:6px;
+      font-weight:600;
+    }
+    nav.menu a:hover { background: rgba(255,255,255,0.06); color:#fff; }
+
+    /* Main content */
+    main.content {
+      padding:20px;
+    }
+
+    /* Stats grid (responsive) */
+    .stats {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+      gap:16px;
+      margin-bottom:18px;
+    }
+    .stat-card {
+      background:var(--card);
+      border-radius:10px;
+      padding:14px;
+      box-shadow: 0 6px 20px rgba(11,22,60,0.06);
+    }
+    .stat-card .label { font-size:0.9rem; color:var(--muted); margin-bottom:6px; }
+    .stat-card .value { font-size:1.6rem; font-weight:800; color:var(--primary); }
+    .stat-card .meta { font-size:0.85rem; color:var(--muted); margin-top:6px; }
+
+    /* Charts grid */
+    .charts-grid {
+      display:grid;
+      grid-template-columns: 2fr 1fr;
+      gap:16px;
+      margin-bottom:18px;
+    }
+    .chart-card {
+      background:var(--card);
+      border-radius:10px; padding:12px;
+      box-shadow: 0 6px 20px rgba(11,22,60,0.06);
+    }
+    .chart-card h4 { margin:0 0 8px 0; color:var(--primary); }
+
+    .chart-wrap { height:260px; }
+
+    /* Alerts + small stats column */
+    .side-column { display:flex; flex-direction:column; gap:12px; }
+
+    .alert {
+      padding:10px 12px; border-radius:8px; color:#fff; font-weight:700;
+    }
+    .alert.danger { background:var(--danger); }
+    .alert.warn { background:var(--warning); color:#111; }
+    .alert.ok { background:var(--success); color:#fff; }
+
+    /* Sample table */
+    .table-card {
+      margin-top:18px;
+      overflow:auto;
+      border-radius:10px;
+      box-shadow: 0 6px 20px rgba(11,22,60,0.06);
+      background:var(--card);
+    }
+    table {
+      width:100%; border-collapse:collapse; min-width:720px;
+    }
+    th, td { padding:12px 14px; text-align:left; border-bottom:1px solid #eef2f7; color:var(--primary); }
+    th { background:linear-gradient(0deg, rgba(10,30,68,0.02), rgba(10,30,68,0.02)); font-weight:700; color:var(--muted); }
+    tr:hover td { background: rgba(9,30,60,0.02); }
+
+    /* Footer small */
+    footer.small { text-align:center; padding:12px; color:var(--muted); font-size:0.9rem; }
+
+    /* Responsive behaviour */
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      aside.sidebar {
+        display:none; /* toggled visible via JS when menu open */
+        position:fixed; left:0; top:72px; bottom:0; width:260px; z-index:40;
+      }
+      .menu-toggle { display:inline-block; }
+      .charts-grid { grid-template-columns: 1fr; }
+      .chart-wrap { height:220px; }
+      .stat-card .value { font-size:1.35rem; }
+      table { min-width:600px; }
+    }
+
+    /* Visible sidebar when toggled */
+    aside.sidebar.open { display:block; box-shadow: 6px 0 18px rgba(9,30,60,0.12); }
+
+  </style>
+</head>
+<body>
+
+  <!-- Top header -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">OG</div>
+      <div id="index.html" class="py-12 bg-gray-50 dark:bg-slate-800"></div>
+      <div>
+        <a href="index.html"><div style="font-size:16px">OpenGates Insurance</div></a>
+        <div style="font-size:12px;color:rgba(255,255,255,0.85)">Demo Dashboard</div>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+      <div style="font-weight:700;color:var(--accent)">Logged in as: Demo User</div>
+    </div>
+  </header>
+
+  <!-- Demo login note -->
+  <div class="login-note">
+    Demo login — Email: <strong>demo@opengates.com</strong> | Password: <strong>password123</strong>
+  </div>
+
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="profile">
+        <div class="avatar">D</div>
+        <div>
+          <div style="font-weight:800">Demo User</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.85)">demo@opengates.com</div>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <a href="#">Dashboard</a>
+        <a href="#">Clients</a>
+        <a href="#">Policies</a>
+        <a href="#">Claims</a>
+        <a href="#">Payments</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
+        <a href="index.html">Exit</a>
+      </nav>
+
+      <div style="margin-top:20px;font-size:12px;color:rgba(255,255,255,0.8)">
+        <div><strong style="color:var(--accent)">Active:</strong> 980 clients</div>
+        <div style="margin-top:8px"><strong style="color:var(--accent)">Policies:</strong> 1,245</div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+      <!-- Stats -->
+      <section class="stats" aria-label="Key metrics">
+        <div class="stat-card">
+          <div class="label">Active Policies</div>
+          <div class="value">1,245</div>
+          <div class="meta">+3.8% vs last month</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="label">Total Clients</div>
+          <div class="value">980</div>
+          <div class="meta">New: 76 this month</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="label">Pending Claims</div>
+          <div class="value">210</div>
+          <div class="meta">Awaiting review: 12</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="label">Revenue (YTD)</div>
+          <div class="value">$1.2M</div>
+          <div class="meta">Avg premium: $115</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="label">Claims Approved (YTD)</div>
+          <div class="value">1,030</div>
+          <div class="meta">Approval rate: 78%</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="label">Claims Denied (YTD)</div>
+          <div class="value">290</div>
+          <div class="meta">Denial rate: 22%</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="label">Avg Response Time</div>
+          <div class="value">1.8 days</div>
+          <div class="meta">Goal: &lt;2 days</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="label">Churn (last 90d)</div>
+          <div class="value">4.2%</div>
+          <div class="meta">Retention: 95.8%</div>
+        </div>
+      </section>
+
+      <!-- Charts + Alerts (grid) -->
+      <section class="charts-grid" aria-label="Charts and alerts">
+        <div>
+          <div class="chart-card">
+            <h4>Claims — Monthly Trend</h4>
+            <div class="chart-wrap"><canvas id="claimsChart"></canvas></div>
+          </div>
+
+          <div style="height:16px"></div>
+
+          <div class="chart-card">
+            <h4>Quarterly Revenue</h4>
+            <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
+          </div>
+
+          <div style="height:16px"></div>
+
+          <div class="chart-card">
+            <h4>New Clients — Monthly</h4>
+            <div class="chart-wrap"><canvas id="newClientsChart"></canvas></div>
+          </div>
+        </div>
+
+        <aside class="side-column">
+          <div class="chart-card">
+            <h4>Client Distribution</h4>
+            <div class="chart-wrap"><canvas id="distributionChart"></canvas></div>
+          </div>
+
+          <div class="chart-card" style="padding:14px;">
+            <h4>Alerts</h4>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+              <div class="alert danger">⚠️ 5 Policies expiring within 7 days</div>
+              <div class="alert warn">⏳ 12 Claims awaiting manager approval</div>
+              <div class="alert ok">✅ 22 Payments processed in the last hour</div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h4>Quick Stats</h4>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
+              <div style="background:#f7fff9;padding:8px;border-radius:6px;color:var(--primary);font-weight:700">Avg. Premium<br><span style="font-size:1.1rem">$115</span></div>
+              <div style="background:#fff8f0;padding:8px;border-radius:6px;color:var(--primary);font-weight:700">Open Tickets<br><span style="font-size:1.1rem">9</span></div>
+              <div style="background:#eef9ff;padding:8px;border-radius:6px;color:var(--primary);font-weight:700">Agents Online<br><span style="font-size:1.1rem">14</span></div>
+              <div style="background:#fffdf0;padding:8px;border-radius:6px;color:var(--primary);font-weight:700">Avg Claim Payout<br><span style="font-size:1.1rem">$3,200</span></div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Sample clients table -->
+      <section class="table-card" aria-label="Recent clients">
+        <table>
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Policy</th>
+              <th>Status</th>
+              <th>Premium</th>
+              <th>Last Payment</th>
+              <th>Claims</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>John Doe</td><td>Auto — Comprehensive</td><td>Active</td><td>$120/mo</td><td>2025-09-10</td><td>1</td></tr>
+            <tr><td>Jane Smith</td><td>Health — Family</td><td>Active</td><td>$85/mo</td><td>2025-09-04</td><td>0</td></tr>
+            <tr><td>Michael Johnson</td><td>Home — Contents</td><td>Expired</td><td>$150/mo</td><td>2024-12-02</td><td>2</td></tr>
+            <tr><td>Sarah Lee</td><td>Travel — Single Trip</td><td>Active</td><td>$45/trip</td><td>2025-08-30</td><td>0</td></tr>
+            <tr><td>Esther Mwangi</td><td>Life — Term</td><td>Active</td><td>$60/mo</td><td>2025-09-02</td><td>0</td></tr>
+            <tr><td>David Kimani</td><td>Auto — Third Party</td><td>Active</td><td>$40/mo</td><td>2025-09-09</td><td>1</td></tr>
+            <tr><td>Aisha Abdullah</td><td>Health — Individual</td><td>Pending</td><td>$70/mo</td><td>—</td><td>0</td></tr>
+            <tr><td>Samuel Otieno</td><td>Property — Building</td><td>Active</td><td>$220/mo</td><td>2025-09-08</td><td>3</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <footer class="small">© 2025 OpenGates Insurance Agency — Demo data only</footer>
+    </main>
+  </div>
+
+  <script>
+    // Sidebar toggle for mobile
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+
+    // Chart helper to create responsive charts
+    function makeChart(ctx, config) {
+      return new Chart(ctx, Object.assign({ options: { responsive: true, maintainAspectRatio: false } }, config));
+    }
+
+    // Data (sample)
+    const months = ['Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'];
+    const claimsData = [40, 55, 30, 70, 60, 90, 50, 82];
+    const revenueData = [250000, 300000, 350000, 320000];
+    const newClients = [45,60,52,70,76,88,92,102];
+
+    // Claims trend (line)
+    makeChart(document.getElementById('claimsChart'), {
+      type: 'line',
+      data: {
+        labels: months,
+        datasets: [{
+          label: 'Claims Filed',
+          data: claimsData,
+          borderColor: '--accent',
+          borderWidth: 2,
+          tension: 0.3,
+          pointRadius: 3,
+          backgroundColor: 'rgba(0,255,136,0.12)',
+          borderColor: '#00ff88'
+        }]
+      },
+      options: {
+        plugins:{legend:{display:true}},
+        scales:{ y:{ beginAtZero:true } }
+      }
+    });
+
+    // Revenue (bar)
+    makeChart(document.getElementById('revenueChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Q1','Q2','Q3','Q4'],
+        datasets: [{
+          label:'Revenue ($)',
+          data: revenueData,
+          backgroundColor: '#00ff88'
+        }]
+      },
+      options: {
+        scales:{ y:{ beginAtZero:true, ticks:{callback: v => '$' + (v/1000) + 'k' } } }
+      }
+    });
+
+    // Distribution (doughnut)
+    makeChart(document.getElementById('distributionChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Health','Auto','Life','Property'],
+        datasets: [{
+          data: [400, 300, 180, 100],
+          backgroundColor: ['#00ff88','#ffaa00','#ff4444','#4285f4']
+        }]
+      }
+    });
+
+    // New clients (area)
+    makeChart(document.getElementById('newClientsChart'), {
+      type: 'line',
+      data: {
+        labels: months,
+        datasets: [{
+          label: 'New Clients',
+          data: newClients,
+          borderColor: '#19507a',
+          backgroundColor: 'rgba(25,80,122,0.12)',
+          fill: true,
+          tension: 0.3
+        }]
+      }
+    });
+
+    // Make charts redraw on resize just in case
+    window.addEventListener('resize', () => {
+      Chart.helpers.each(Chart.instances, chart => { chart.resize(); });
+    });
+  </script>
+</body>
+</html>

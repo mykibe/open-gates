@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | OpenGates InsureFlow</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981',
+                        dark: '#1e293b',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-gray-50 dark:bg-dark min-h-screen font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-slate-900 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i data-feather="shield" class="h-8 w-8 text-primary"></i>
+                        <a href="index.html"><span class="ml-2 text-xl font-bold text-gray-900 dark:text-white">OpenGates </span></a>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="index.html" class="text-gray-500 dark:text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="contact.html" class="text-gray-500 dark:text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <button id="theme-toggle" class="theme-toggle p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700">
+                        <i data-feather="moon" class="hidden dark:block text-yellow-300"></i>
+                        <i data-feather="sun" class="dark:hidden text-gray-700"></i>
+                    </button>
+                    <div class="flex space-x-4">
+                        <a href="login.html" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-blue-600">
+                            Login
+                        </a>
+                        <a href="register.html" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary bg-white hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-700 border border-primary">
+                            Register
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Content -->
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+            <h2 class="text-base text-primary font-semibold tracking-wide uppercase">About Us</h2>
+            <h1 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+                Revolutionizing Insurance Management
+            </h1>
+            <p class="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-300 lg:mx-auto">
+                Founded in 2023, OpenGates Insurance has been at the forefront of digital transformation in the insurance industry.
+            </p>
+        </div>
+
+        <div class="mt-20">
+            <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+                <div>
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-white">Our Mission</h3>
+                    <p class="mt-4 text-base text-gray-500 dark:text-gray-300">
+                        To simplify insurance management through innovative technology, providing agents and clients with a seamless, secure, and efficient platform that transforms how insurance is managed and experienced.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-white">Our Vision</h3>
+                    <p class="mt-4 text-base text-gray-500 dark:text-gray-300">
+                        To become the leading insurance management platform globally, recognized for our commitment to technological excellence and customer satisfaction.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Our Team</h3>
+                <div class="mt-8 grid grid-cols-2 gap-8 md:grid-cols-4">
+                    <div class="text-center">
+                        <img class="mx-auto h-24 w-24 rounded-full" src="http://static.photos/executive/200x200/201" alt="Sarah Johnson">
+<h4 class="mt-4 text-base font-medium text-gray-900 dark:text-white">Edward Kibe</h4>
+                        <p class="text-sm text-gray-500 dark:text-gray-300">Founder</p>
+                    </div>
+                    <div class="text-center">
+                        <img class="mx-auto h-24 w-24 rounded-full" src="http://static.photos/technology/200x200/202" alt="Michael Chen">
+<h4 class="mt-4 text-base font-medium text-gray-900 dark:text-white">Mary Wambui</h4>
+                        <p class="text-sm text-gray-500 dark:text-gray-300">CEO</p>
+                    </div>
+                    <div class="text-center">
+                        <img class="mx-auto h-24 w-24 rounded-full" src="http://static.photos/office/200x200/203" alt="David Wilson">
+<h4 class="mt-4 text-base font-medium text-gray-900 dark:text-white">Cera Imani</h4>
+                        <p class="text-sm text-gray-500 dark:text-gray-300">Marketing Manager</p>
+                    </div>
+                    <div class="text-center">
+                        <img class="mx-auto h-24 w-24 rounded-full" src="http://static.photos/customer-service/200x200/204" alt="Emma Rodriguez">
+<h4 class="mt-4 text-base font-medium text-gray-900 dark:text-white">Michael Kibe</h4>
+                        <p class="text-sm text-gray-500 dark:text-gray-300">Head of Customer Success</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-900 mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="border-t border-gray-200 dark:border-gray-700 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-base text-gray-500 dark:text-gray-300">&copy; 2025 OpenGates InsureFlow. All rights reserved.</p>
+                <div class="mt-4 md:mt-0">
+                    <a href="privacy.html" class="text-base text-gray-500 dark:text-gray-300 hover:text-primary">Privacy Policy</a>
+                    <span class="mx-2 text-gray-500">•</span>
+                    <a href="terms.html" class="text-base text-gray-500 dark:text-gray-300 hover:text-primary">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+        // Theme toggle functionality
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+        });
+    </script>
+</body>
+</html>

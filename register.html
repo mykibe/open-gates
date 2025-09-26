@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | OpenGates InsureFlow</title>
+    <a href="index.html" class="sr-only">Go to homepage</a>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981',
+                        dark: '#1e293b',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .auth-bg {
+            background-image: url('http://static.photos/office/1200x630/51');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-dark min-h-screen font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-slate-900 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i data-feather="shield" class="h-8 w-8 text-primary"></i>
+                        <a href="index.html"><span class="ml-2 text-xl font-bold text-gray-900 dark:text-white">OpenGates</span></a>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="index.html" class="text-gray-500 dark:text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="login.html" class="text-gray-500 dark:text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Login</a>
+                    <button id="theme-toggle" class="theme-toggle p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700">
+                        <i data-feather="moon" class="hidden dark:block text-yellow-300"></i>
+                        <i data-feather="sun" class="dark:hidden text-gray-700"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Registration Form -->
+    <div class="min-h-screen flex items-center">
+        <div class="max-w-5xl mx-auto w-full">
+            <div class="bg-white dark:bg-slate-800 shadow-xl rounded-lg overflow-hidden">
+                <div class="md:flex flex-row-reverse">
+                    <div class="hidden md:block md:w-1/2 auth-bg"></div>
+                    <div class="p-8 md:p-12 md:w-1/2">
+                        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Create your account</h2>
+                        <form id="registerForm" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="firstName" class="block text-sm font-medium text-gray-700 dark:text-gray-300">First name</label>
+                                    <input type="text" id="firstName" name="firstName" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-slate-700 shadow-sm focus:border-primary focus:ring-primary p-2">
+                                </div>
+                                <div>
+                                    <label for="lastName" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Last name</label>
+                                    <input type="text" id="lastName" name="lastName" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-slate-700 shadow-sm focus:border-primary focus:ring-primary p-2">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email address</label>
+                                <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-slate-700 shadow-sm focus:border-primary focus:ring-primary p-2">
+                            </div>
+                            <div>
+                                <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+                                <input type="password" id="password" name="password" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-slate-700 shadow-sm focus:border-primary focus:ring-primary p-2">
+                            </div>
+                            <div>
+                                <label for="confirmPassword" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Confirm password</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-slate-700 shadow-sm focus:border-primary focus:ring-primary p-2">
+                            </div>
+                            <div class="flex items-center">
+                                <input id="terms" name="terms" type="checkbox" required class="h-4 w-4 text-primary focus:ring-primary border-gray-300 dark:border-gray-600 rounded">
+                                <label for="terms" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                                    I agree to the <a href="terms.html" class="text-primary hover:text-blue-600">Terms of Service</a> and <a href="privacy.html" class="text-primary hover:text-blue-600">Privacy Policy</a>
+                                </label>
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                                    Register
+                                </button>
+                            </div>
+                        </form>
+                        <div class="mt-6">
+                            <div class="relative">
+                                <div class="absolute inset-0 flex items-center">
+                                    <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
+                                </div>
+                                <div class="relative flex justify-center text-sm">
+                                    <span class="px-2 bg-white dark:bg-slate-800 text-gray-500 dark:text-gray-300">
+                                        Already have an account?
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <a href="login.html" class="w-full flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-slate-700 hover:bg-gray-50 dark:hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                                    Login here
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        feather.replace();
+        // Theme toggle functionality
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+        });
+
+        // Registration form handling
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                confirmPassword: document.getElementById('confirmPassword').value
+            };
+            
+            // Validate passwords match
+            if (formData.password !== formData.confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // Here you would typically make an API call to register
+            console.log('Registration data:', formData);
+            
+            // For demo purposes, just redirect to login
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

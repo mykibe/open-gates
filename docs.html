@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation - OpenGates Insurance</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+    }
+  </script>
+</head>
+<body class="bg-gradient-to-br from-blue-900 to-gray-900 text-white min-h-screen flex flex-col">
+  <!-- Navbar -->
+  <nav class="bg-blue-800 p-4 shadow-lg flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-bold text-green-400">OpenGates</a>
+    <div class="space-x-6 hidden md:flex">
+      <a href="index.html" class="hover:text-green-400">Home</a>
+      <a href="about.html" class="hover:text-green-400">About</a>
+      <a href="pricing.html" class="hover:text-green-400">Pricing</a>
+      <a href="privacy.html" class="hover:text-green-400">Privacy</a>
+      <a href="terms.html" class="hover:text-green-400">Terms</a>
+      <a href="cookies.html" class="hover:text-green-400">Cookies</a>
+      <a href="gdpr.html" class="hover:text-green-400">GDPR</a>
+      <a href="docs.html" class="text-green-400 font-semibold">Docs</a>
+
+    </div>
+    <button onclick="toggleTheme()" class="bg-green-400 text-blue-900 px-3 py-1 rounded-md">Toggle</button>
+  </nav>
+
+  <!-- docs Content -->
+   <main class="flex-grow container mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold text-center text-green-400 mb-12">Documentation</h1>
+   <main class="pt-24 container mx-auto px-6 py-12">
+  <h1 class="text-4xl font-bold mb-6 text-green-600 dark:text-green-400">Documentation</h1>
+  <p class="mb-8 text-lg">
+    Welcome to the official documentation for <span class="font-semibold">OpenGates</span>. 
+    Here you will find guides, references, and tutorials to help you make the most out of the system.
+  </p>
+
+  <!-- Quick Start -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold mb-4">Quick Start</h2>
+    <ol class="list-decimal ml-6 space-y-2">
+      <li>Register as an agent or client via the signup page.</li>
+      <li>Verify your account through the email confirmation.</li>
+      <li>Log in to access your dashboard and available services.</li>
+      <li>Manage policies, payments, and reports with ease.</li>
+    </ol>
+  </section>
+
+  <!-- Core Features -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold mb-4">Core Features</h2>
+    <ul class="list-disc ml-6 space-y-2">
+      <li><span class="font-medium">Policy Management:</span> Create, update, and track insurance policies.</li>
+      <li><span class="font-medium">Client Portal:</span> Allow customers to view policies, claims, and invoices.</li>
+      <li><span class="font-medium">Agent Dashboard:</span> Monitor performance and manage client requests.</li>
+      <li><span class="font-medium">Reports & Analytics:</span> Generate detailed reports with charts and insights.</li>
+    </ul>
+  </section>
+
+  <!-- API Documentation -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold mb-4">API Documentation</h2>
+    <p class="mb-4">
+      Our API allows integration with third-party services. Below is a quick reference:
+    </p>
+    <pre class="bg-green-200 dark:bg-black-800 p-4 rounded-md overflow-x-auto text-sm">
+POST /api/v1/login
+GET  /api/v1/policies
+POST /api/v1/claims
+GET  /api/v1/reports
+    </pre>
+  </section>
+
+  <!-- FAQ -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold mb-4">FAQ</h2>
+    <div class="space-y-4">
+      <div>
+        <h3 class="font-semibold">How do I reset my password?</h3>
+        <p>Click "Forgot Password" on the login page and follow the email instructions.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold">Can clients view invoices online?</h3>
+        <p>Yes, clients can log in to their portal and download invoices anytime.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold">Does the system support mobile devices?</h3>
+        <p>Yes, the platform is fully responsive and works seamlessly on mobile.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section>
+    <h2 class="text-2xl font-semibold mb-4">Support</h2>
+    <p>
+      Need more help? Reach out to our support team at 
+      <a href="mailto:support@insurancems.com" class="text-blue-600 dark:text-blue-400">support@insurancems.com</a>.
+    </p>
+  </section>
+</main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-800 text-center py-6">
+    <p>&copy; 2025 OpenGates Insurance. All rights reserved.</p>
+  </footer>
+</body>
+</html>
